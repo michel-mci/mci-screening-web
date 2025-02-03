@@ -27,7 +27,7 @@ const createPoseLandmarker = async () => {
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
-      modelAssetPath: '/cache/screening/mediapipe-models/pose_landmarker_full.task',
+      modelAssetPath: '../mediapipe-models/pose_landmarker_full.task',
       delegate: delegate,
     },
     runningMode: runningMode,
