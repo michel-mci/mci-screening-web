@@ -23,11 +23,11 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia
 const createPoseLandmarker = async () => {
   debugMessageHandler.postMessage("createPoseLandmarker");
 
-  const vision = await FilesetResolver.forVisionTasks("../wasm")
+  const vision = await FilesetResolver.forVisionTasks("../../wasm")
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
-      modelAssetPath: '../mediapipe-models/pose_landmarker_full.task',
+      modelAssetPath: '../../mediapipe-models/pose_landmarker_full.task',
       delegate: delegate,
     },
     runningMode: runningMode,
