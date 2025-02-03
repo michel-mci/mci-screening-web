@@ -21,8 +21,6 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia
 // loading. Machine Learning models can be large and take a moment to
 // get everything needed to run.
 const createPoseLandmarker = async () => {
-  debugMessageHandler.postMessage("createPoseLandmarker");
-
   const vision = await FilesetResolver.forVisionTasks("/michel-mci/mci-screening-web/wasm")
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
@@ -37,7 +35,6 @@ const createPoseLandmarker = async () => {
   if (hasGetUserMedia()) {
     enableCam()
   }
-  debugMessageHandler.postMessage("landmarker created");
 }
 createPoseLandmarker();
 
@@ -134,32 +131,15 @@ function enableCam() {
     predict();
   }, 0);
 
-  debugMessageHandler.postMessage("Loading");
   // Fetch the video file
   if(debugVideo && debugVideo != ""){
     loadVideo();
   }else{
-    debugMessageHandler.postMessage("Loading camera");
-
-    if (navigator) {
-      debugMessageHandler.postMessage("Navigator exists");
-      if (navigator.mediaDevices) {
-        debugMessageHandler.postMessage("MediaDevices exists");
-        navigator.mediaDevices.getUserMedia(constraints)
+    navigator.mediaDevices.getUserMedia(constraints)
           .then((stream) => {
-            debugMessageHandler.postMessage("Success");
             video.srcObject = stream;
             video.play();
-          })
-          .catch((error) => {
-            debugMessageHandler.postMessage("Error: " + error);
           });
-      } else {
-        debugMessageHandler.postMessage("MediaDevices does not exist");
-      }
-    } else {
-      debugMessageHandler.postMessage("Navigator does not exist");
-    }
   }
 }
 
