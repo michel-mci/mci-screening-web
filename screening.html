@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCI Screening</title>
+    <style>
+        html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: #000000;
+        }
+
+        #wrapper{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+          display: none;
+        }
+
+        canvas {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          transform: rotateY(180deg);
+          opacity: 0;
+          transition: opacity 0.2s ease;
+        }
+        canvas.visible {
+            opacity: 1;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="importmap">
+        {
+          "imports": {
+            "mediapipe/": "/js/mediapipe/"
+          }
+        }
+    </script>
+</head>
+<body>
+<section id="wrapper" class="invisible">
+    <video id="webcam" autoplay playsinline></video>
+    <canvas class="output_canvas" id="output_canvas" width="1280" height="720"></canvas>
+    <script>
+        const API_KEY = 'a77d1ee4-1eb1-4d69-b5a0-6eeb70df8c78';
+    </script>
+    <script>
+        // Fetch the JavaScript file
+        fetch('js/screening.js', {
+            headers: {
+                'x-api-key': API_KEY
+            }
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            // Create a blob URL
+            const url = URL.createObjectURL(blob);
+
+            // Create a new script element
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = url;
+
+            // Append the script element to the body
+            document.body.appendChild(script);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</section>
+</body>
+</html>

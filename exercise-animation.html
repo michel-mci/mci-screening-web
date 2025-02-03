@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCI Exercise Animation</title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE 10 and IE 11 */
+            user-select: none;
+            /* Standard syntax */
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            transition: opacity 1s ease;
+            opacity: 0;
+        }
+
+        canvas.visible {
+            opacity: 1;
+        }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "/js/three.module.min.js",
+            "three/addons/": "/js/"
+          }
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const API_KEY = 'a77d1ee4-1eb1-4d69-b5a0-6eeb70df8c78';
+    </script>
+    <script>
+        // Fetch the JavaScript file
+        fetch('js/exercise-animation.js', {
+            headers: {
+                'x-api-key': API_KEY
+            }
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            // Create a blob URL
+            const url = URL.createObjectURL(blob);
+
+            // Create a new script element
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = url;
+
+            // Append the script element to the body
+            document.body.appendChild(script);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
+</html>
