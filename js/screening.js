@@ -45,7 +45,7 @@ const canvasCtx = canvasElement.getContext("2d")
 const drawingUtils = new DrawingUtils(canvasCtx)
 
 window.restartVideo = function() {
-    if(debugVideo != ""){
+    if(debugVideo && debugVideo != ""){
         video.currentTime = 0;
         video.play();
     }
@@ -107,7 +107,7 @@ function enableCam() {
           drawWidth = videoWidth * (drawHeight / videoHeight);
         }
 
-        if(debugVideo.startsWith("3")){
+        if(debugVideo && debugVideo.startsWith("3")){
             // Flip the context horizontally
             canvasCtx.save();
             canvasCtx.scale(-1, 1);
@@ -117,7 +117,7 @@ function enableCam() {
         // Draw the image centered and covering the whole canvas
         canvasCtx.drawImage($this, canvasWidth * 0.5 - drawWidth * 0.5, canvasHeight * 0.5 - drawHeight * 0.5, drawWidth, drawHeight);
 
-        if(debugVideo.startsWith("3")){
+        if(debugVideo && debugVideo.startsWith("3")){
             canvasCtx.restore();
         }
 
