@@ -32,8 +32,11 @@ const createPoseLandmarker = async () => {
     numPoses: 1
   });
 
+  print("hasGetUserMedia");
   if (hasGetUserMedia()) {
     enableCam()
+  }else{
+    print("hasGetUserMedia is false");
   }
 }
 createPoseLandmarker();
@@ -53,6 +56,8 @@ window.restartVideo = function() {
 
 // Enable the live webcam view and start detection.
 function enableCam() {
+  console.log("enableCam");
+  
   if (!poseLandmarker) {
     console.log("Wait! poseLandmaker not loaded yet.")
     return
@@ -133,6 +138,7 @@ function enableCam() {
 
   // Fetch the video file
   if(debugVideo && debugVideo != ""){
+    console.log("Prepare video");
     loadVideo();
   }else{
     console.log("Prepare camera");
