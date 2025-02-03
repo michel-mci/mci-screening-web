@@ -32,11 +32,11 @@ const createPoseLandmarker = async () => {
     numPoses: 1
   });
 
-  print("hasGetUserMedia");
+  console.log("hasGetUserMedia");
   if (hasGetUserMedia()) {
     enableCam()
   }else{
-    print("hasGetUserMedia is false");
+    console.log("hasGetUserMedia is false");
   }
 }
 createPoseLandmarker();
