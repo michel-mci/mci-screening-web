@@ -21,11 +21,11 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia
 // loading. Machine Learning models can be large and take a moment to
 // get everything needed to run.
 const createPoseLandmarker = async () => {
-  const vision = await FilesetResolver.forVisionTasks("/michel-mci/mci-screening-web/wasm")
+  const vision = await FilesetResolver.forVisionTasks("/mci-screening-web/wasm")
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
-      modelAssetPath: '/michel-mci/mci-screening-web/mediapipe-models/pose_landmarker_full.task',
+      modelAssetPath: '/mci-screening-web/mediapipe-models/pose_landmarker_full.task',
       delegate: delegate,
     },
     runningMode: runningMode,
