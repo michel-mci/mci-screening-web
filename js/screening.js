@@ -139,6 +139,7 @@ function enableCam() {
           .then((stream) => {
             video.srcObject = stream;
             video.play();
+            console.log("Camera ready");
           });
   }
 }
