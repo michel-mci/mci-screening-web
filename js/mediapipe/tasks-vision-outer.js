@@ -12,5 +12,5 @@
  */
 
 // Browser-Optimized Imports (Don't directly import the URLs below in your application!)
-export * from '/js/mediapipe/tasks-vision.js';
-export {default} from '/js/mediapipe/tasks-vision.js';
+export * from './tasks-vision.js';
+export {default} from './tasks-vision.js';
