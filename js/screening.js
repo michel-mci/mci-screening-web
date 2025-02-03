@@ -135,6 +135,7 @@ function enableCam() {
   if(debugVideo && debugVideo != ""){
     loadVideo();
   }else{
+    console.log("Prepare camera");
     navigator.mediaDevices.getUserMedia(constraints)
           .then((stream) => {
             video.srcObject = stream;
