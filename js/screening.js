@@ -23,11 +23,11 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia
 const createPoseLandmarker = async () => {
   debugMessageHandler.postMessage("createPoseLandmarker");
 
-  const vision = await FilesetResolver.forVisionTasks("../../wasm")
+  const vision = await FilesetResolver.forVisionTasks("/michel-mci/mci-screening-web/wasm")
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
-      modelAssetPath: '../../mediapipe-models/pose_landmarker_full.task',
+      modelAssetPath: '/michel-mci/mci-screening-web/mediapipe-models/pose_landmarker_full.task',
       delegate: delegate,
     },
     runningMode: runningMode,
@@ -37,6 +37,7 @@ const createPoseLandmarker = async () => {
   if (hasGetUserMedia()) {
     enableCam()
   }
+  debugMessageHandler.postMessage("landmarker created");
 }
 createPoseLandmarker();
 
