@@ -23,7 +23,7 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia
 const createPoseLandmarker = async () => {
   debugMessageHandler.postMessage("createPoseLandmarker");
 
-  const vision = await FilesetResolver.forVisionTasks("/cache/screening/wasm")
+  const vision = await FilesetResolver.forVisionTasks("../wasm")
 
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
