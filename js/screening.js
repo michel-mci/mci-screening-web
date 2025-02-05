@@ -226,7 +226,7 @@ async function predict() {
                   );
 
 
-                  sendPoseMessageHandler.postMessage(JSON.stringify({"data": poseData}));
+                  window.flutter_inappwebview.callHandler('sendPoseMessageHandler', JSON.stringify({"data": poseData}));
               }
         });
       }
